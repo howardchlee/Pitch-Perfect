@@ -27,6 +27,8 @@ class PlaySoundsViewController: UIViewController {
         } else {
             println("audio resource not found!")
         }
+        var session = AVAudioSession.sharedInstance()
+        session.setCategory(AVAudioSessionCategoryPlayback, error: nil)
     }
 
     override func didReceiveMemoryWarning() {
