@@ -37,28 +37,30 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func playSlowlyTapped(sender: UIButton) {
-        stopAndResetAudioPlayer()
-        audioPlayer.rate = 0.5
-        audioPlayer.play()
+        playAudioWithRate(0.5)
     }
     
     @IBAction func playQuicklyTapped(sender: UIButton) {
-        stopAndResetAudioPlayer()
-        audioPlayer.rate = 1.5
-        audioPlayer.play()
+        playAudioWithRate(1.5)
     }
 
     @IBAction func playChipmunkTapped(sender: UIButton) {
-        stopAndResetAudioPlayer()
         playAudioWithPitch(1000)
     }
 
     @IBAction func playDarthVaderTapped(sender: UIButton) {
-        stopAndResetAudioPlayer()
         playAudioWithPitch(-1000)
+    }
+    
+    func playAudioWithRate(rate: Float) {
+        stopAndResetAudioPlayer()
+        audioPlayer.rate = rate
+        audioPlayer.play()
     }
 
     func playAudioWithPitch(pitch: Float) {
+        stopAndResetAudioPlayer()
+
         var audioNode: AVAudioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioNode)
         var audioTimePitch: AVAudioUnitTimePitch = AVAudioUnitTimePitch()
